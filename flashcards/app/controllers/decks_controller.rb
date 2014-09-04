@@ -9,12 +9,17 @@ class DecksController < ApplicationController
     @deck = Deck.new
   end
   def create
-    @deck = Deck.new(params[:deck])
+    @deck = Deck.new(name: params[:deck][:name])
     @deck.save
     redirect_to root_path
   end
   def edit
     @deck = Deck.find(params[:id])
+  end
+  def update
+    @deck = Deck.find(params[:id])
+    @deck.update(name: params[:deck][:name])
+    redirect_to root_path
   end
   def destroy
     @deck = Deck.find(params[:id])
